@@ -41,13 +41,13 @@ public class RegistrationTest {
         wd.findElement(By.id("check_policy")).click();
         wd.findElement(By.className("yalla_yalla__1Jxk6")).click();
 
-        wd.findElement(By.name("address")).click();
+       // wd.findElement(By.name("address")).click();
         Thread.sleep(3000);
     }
 
     @AfterMethod
     public void tearDown(){
-
+        wd.quit();
     }
 
 }
