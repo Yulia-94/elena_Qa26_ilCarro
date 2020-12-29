@@ -1,69 +1,52 @@
 package com.examle.ilcarro.qa;
 
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 
-
-
-public class RegistrationTest {
-    WebDriver wd;
-
-
-
-    @BeforeMethod
-    public void setUp(){
-        wd = new ChromeDriver();
-        wd.navigate().to("https://ilcarro-dev-v1.firebaseapp.com/");
-    }
-
+public class RegistrationTest extends TestBase{
 
     @Test
     public void testRegistration() throws InterruptedException {
-        //open reg form
-        wd.findElement(By.cssSelector("[href='/signup']")).click();
 
-        //fill reg form
-        wd.findElement(By.cssSelector("#first_name")).click();
-        wd.findElement(By.cssSelector("#first_name")).clear();
-        wd.findElement(By.cssSelector("#first_name")).sendKeys("Yulia");
-
-        wd.findElement(By.cssSelector("#second_name")).click();
-        wd.findElement(By.cssSelector("#second_name")).clear();
-        wd.findElement(By.cssSelector("#second_name")).sendKeys("Rosenblum");
-
-
+        app.getUserHelperger().openRegForm();
         String email = "my.email"+System.currentTimeMillis()+"@gmail.com";
-        System.out.println("email is:" + email);
-        wd.findElement(By.cssSelector("#email")).click();
-        wd.findElement(By.cssSelector("#email")).clear();
-        wd.findElement(By.cssSelector("#email")).sendKeys(email);
+        app.getUserHelperger().fillRegistrationForm("Yulia", "Rosenblum", email, "Ro123451");
+        app.getUserHelperger().selectCheckBox();
+        app.getUserHelperger().pause(2000);
+        app.clickYallaButton();
+        app.pause(3000);
 
-
-        wd.findElement(By.cssSelector("#password")).click();
-        wd.findElement(By.cssSelector("#password")).clear();
-        wd.findElement(By.cssSelector("#password")).sendKeys("Ro12345");
-
-        //selectCheckBox
-        wd.findElement(By.cssSelector("#check_policy")).click();
-        Thread.sleep(2000);
-
-
-        //clickYullaBut
-        wd.findElement(By.cssSelector("[type='submit']")).click();
-        Thread.sleep(3000);
-
-        Assert.assertFalse(wd.findElements(By.xpath("//h2[contains(.,'Registration')]")).size()>0);
+       Assert.assertFalse(app.isRegistrationFormPresent());
     }
 
-    @AfterMethod
-    public void tearDown(){
-        wd.quit();
+    @Test
+    public void testRegistration2() throws InterruptedException {
 
+        app.openRegForm();
+        String email = "myEmail"+System.currentTimeMillis()+"@mail.com";
+        app.fillRegistrationForm("Misha", "Rosen", email, "Ro12345wa");
+        app.selectCheckBox();
+        app.pause(2000);
+        app.clickYallaButton();
+        app.pause(3000);
+
+        Assert.assertFalse(app.isRegistrationFormPresent());
+    }
+
+    @Test
+    public void testRegistrationNegativ() throws InterruptedException {
+
+        app.openRegForm();
+        String email = "myEmail"+System.currentTimeMillis();
+        app.fillRegistrationForm("Misha", "Rosen", email, "Ro12345wa");
+        app.selectCheckBox();
+        app.pause(2000);
+        app.clickYallaButton();
+        app.pause(3000);
+
+        Assert.assertTrue(app.isRegistrationFormPresent());
     }
 
 
