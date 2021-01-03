@@ -1,13 +1,14 @@
-package com.examle.ilcarro.qa;
+package com.examle.ilcarro.qa.application;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class UserHelper  extends HelperBase{
+    WebDriver wd;
+
     public UserHelper(WebDriver wd) {
         super(wd);
     }
-
 
     public void logIn() throws InterruptedException {
         //clickOnLoginButton
@@ -20,11 +21,6 @@ public class UserHelper  extends HelperBase{
     public boolean isRegistrationFormPresent() {
         return isElementPresent(By.xpath("//h2[contains(.,'Registration')]"));
     }
-
-
-
-
-
 
     public void selectCheckBox() {
         click(By.cssSelector("#check_policy"));
@@ -42,16 +38,10 @@ public class UserHelper  extends HelperBase{
         click(By.cssSelector("[href='/signup']"));
     }
 
-
-
-
-
     public void fillLoginForm(String email, String password) {
         typeByCss("[name=email]", email);
         typeByCss("[name=password]", password);
     }
-
-
 
     public void clickLogoutButtonHeader() {
         click(By.xpath("//a[contains(., 'logOut')]"));

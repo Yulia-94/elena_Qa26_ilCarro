@@ -1,4 +1,4 @@
-package com.examle.ilcarro.qa;
+package com.examle.ilcarro.qa.application;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +11,9 @@ public class HelperBase {
         this.wd = wd;
     }
 
-
+    public void click(By locator){
+        wd.findElement(locator).click();
+    }
 
     public void type(By locator, String text) {
         click(locator);
@@ -36,10 +38,6 @@ public class HelperBase {
         return wd.findElements(locator).size() > 0;
     }
 
-    public void click(By locator){
-        wd.findElement(locator).click();
-    }
-
     public void pause(int millis) throws InterruptedException {
         Thread.sleep(millis);
     }
@@ -47,5 +45,6 @@ public class HelperBase {
     public void clickYallaButton() {
         click(By.cssSelector("[type='submit']"));
     }
+
 
 }

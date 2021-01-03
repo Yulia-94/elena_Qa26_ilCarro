@@ -1,6 +1,5 @@
-package com.examle.ilcarro.qa;
+package com.examle.ilcarro.qa.application;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -9,7 +8,8 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
     WebDriver wd;
 
-    UserHelper userHelper;
+    UserHelper user;
+    CarHelper carHelper;
 
 
 
@@ -19,14 +19,22 @@ public class ApplicationManager {
         wd.manage().window().maximize();
         wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        userHelper = new UserHelper(wd);
+        user = new UserHelper(wd);
+        carHelper = new CarHelper(wd);
     }
 
     public void stop() {
+
         wd.quit();
     }
 
-    public UserHelperger getUserHelperger (){
-        return getUserHelperger();
+
+    public CarHelper getCarHelper() {
+        return carHelper;
     }
+
+    public UserHelper getUser (){
+       return user;
+    }
+
 }
