@@ -1,5 +1,6 @@
 package com.examle.ilcarro.qa.tests;
 
+import com.examle.ilcarro.qa.model.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,7 +20,7 @@ public class LoginTest extends TestBase{
     @Test
     public void testLogin() throws InterruptedException {
         app.getUser().clickOnLoginButton();
-        app.getUser().fillLoginForm("my.email1609079373951@gmail.com", "Ro123451");
+        app.getUser().fillLoginForm(new User().setEmail("my.email1609079373951@gmail.com").setPassword("Ro123451"));
         app.getUser().pause(2000);
         app.getUser().clickYallaButton();
 
