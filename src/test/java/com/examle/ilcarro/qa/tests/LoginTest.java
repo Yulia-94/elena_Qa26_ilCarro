@@ -19,12 +19,19 @@ public class LoginTest extends TestBase{
 
     @Test
     public void testLogin() throws InterruptedException {
+        logger.info("\n user name is my.email1609079373951@gmail.com \n user password is Ro123451");
         app.getUser().clickOnLoginButton();
         app.getUser().fillLoginForm(new User().setEmail("my.email1609079373951@gmail.com").setPassword("Ro123451"));
         app.getUser().pause(2000);
         app.getUser().clickYallaButton();
 
         Assert.assertTrue(app.getUser().isUserLoggedIn());
+        logger.info("Test Passed");
+
+        String screenshot = " src/test/screenshot- " + System.currentTimeMillis() + ".png";
+        app.getUser().takeScreenshot(screenshot);
+
+        logger.info("Created screenshot" + screenshot);
 
     }
 
