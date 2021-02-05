@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.examle.ilcarro.qa.tests.CarCreationTests" tests="1" skipped="1" failures="0" errors="0" timestamp="2021-02-02T18:47:02" hostname="YULIA" time="0.0">
+  <properties/>
+  <testcase name="testCarCreation" classname="com.examle.ilcarro.qa.tests.CarCreationTests" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[21:47:02 INFO  - stop test testCarCreation
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
